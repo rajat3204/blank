@@ -32,6 +32,14 @@ jobs:
       - run:
           name: Push Docker image to Docker Hub
           command: docker push rajat3204/jenkins
+          
+      - run:
+          name: Add SSH Key
+          command: |
+            mkdir -p ~/.ssh
+            echo "$SSH_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan 34.202.209.18 >> ~/.ssh/known_hosts
 
 
       - run:
