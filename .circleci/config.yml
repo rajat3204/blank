@@ -20,7 +20,6 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
 
-
       - run:
           name: Build Docker image
           command: docker build -t rajat3204/jenkins .
@@ -32,27 +31,14 @@ jobs:
       - run:
           name: Push Docker image to Docker Hub
           command: docker push rajat3204/jenkins
-          
-      - run:
-          name: Add SSH Key
-          command: |
-            mkdir -p ~/.ssh
-            echo "$SSH_KEY" > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            ssh-keyscan 34.202.209.18 >> ~/.ssh/known_hosts
-
 
       - run:
           name: Deploy using Docker Compose
           command: |
             ssh -o StrictHostKeyChecking=no ubuntu@34.202.209.18 "docker pull rajat3204/jenkins && cd /opt/docker/apps && docker-compose up -d"
 
-
-
-
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build-and-deploy
-
