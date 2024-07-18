@@ -11,6 +11,8 @@ jobs:
       - run:
           name: Checkout secondary repository
           command: |
+            mkdir -p ~/.ssh
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
             git clone git@github.com:rajat3204/jenkins-install-docker.git /tmp/secondary-repo
             cp /tmp/secondary-repo/Dockerfile .
             cat Dockerfile
