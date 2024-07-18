@@ -34,6 +34,13 @@ jobs:
           command: docker push rajat3204/jenkins
 
 
+      - run:
+          name: Deploy using Docker Compose
+          command: |
+            ssh -o StrictHostKeyChecking=no ubuntu@34.202.209.18 "docker pull rajat3204/jenkins && cd /opt/docker/apps && docker-compose up -d"
+
+
+
 
 workflows:
   version: 2
