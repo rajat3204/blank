@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  build-and-deploy:
+    docker:
+      - image: cimg/base:stable  # Use an appropriate CircleCI Docker image
+
+    steps:
+      - checkout
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-and-deploy
+
