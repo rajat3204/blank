@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-and-deploy:
     docker:
-      - image: cimg/base:stable  # Use an appropriate CircleCI Docker image
+      - image: circleci/python:3.8  # Use an appropriate CircleCI Docker image
 
     steps:
       - checkout
